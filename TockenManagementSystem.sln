@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Repository\Helpe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenManagerFunctions", "GetTokenFunction\TokenManagerFunctions.csproj", "{92024757-99A7-4A71-A750-CE661F39A97A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenManager.Test", "TokenManager.Test\TokenManager.Test.csproj", "{47DB7A44-B041-4988-9595-045AF2B6765C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{92024757-99A7-4A71-A750-CE661F39A97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92024757-99A7-4A71-A750-CE661F39A97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92024757-99A7-4A71-A750-CE661F39A97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DB7A44-B041-4988-9595-045AF2B6765C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DB7A44-B041-4988-9595-045AF2B6765C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DB7A44-B041-4988-9595-045AF2B6765C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DB7A44-B041-4988-9595-045AF2B6765C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,15 +12,16 @@ using System.Collections.Generic;
 using Models;
 using System.Linq;
 using Microsoft.Azure.Documents.Linq;
+using Microsoft.Azure.Documents;
 
-namespace TokenManagerFunctions.Functions
+namespace TokenManagerFunctions
 {
     public static class EstimateWaitingTimeFunction
     {
         [FunctionName("EstimateWaitingTimeFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
-            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] DocumentClient client,
+            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] IDocumentClient client,
             ILogger log)
         {
             log.LogInformation("EstimateWaitingTimeFunction - Invoked");
@@ -31,7 +32,7 @@ namespace TokenManagerFunctions.Functions
 
             IDocumentQuery<Token> queryRes = client.CreateDocumentQuery<Token>(tokenCollectUri, options)
                 .Where(token => token.Status == TokenStatusEnume.InQueue)
-                .OrderBy(token=>token.TokenNo)
+                .OrderBy(token => token.TokenNo)
                 .AsDocumentQuery();
 
             if (queryRes.HasMoreResults)

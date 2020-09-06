@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Microsoft.Azure.WebJobs;
@@ -10,6 +7,10 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Models;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace TokenManagerFunctions
 {
@@ -18,7 +19,7 @@ namespace TokenManagerFunctions
         [FunctionName("GetTokenFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage request,
-            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] DocumentClient client,
+            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] IDocumentClient client,
             ILogger log
             )
         {

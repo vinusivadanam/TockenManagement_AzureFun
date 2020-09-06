@@ -1,28 +1,27 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Helpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.Linq;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Models;
-using Microsoft.Azure.Documents.Client;
+using System;
 using System.Collections.Generic;
-using Microsoft.Azure.Documents.Linq;
 using System.Globalization;
 using System.Linq;
-using Helpers;
+using System.Threading.Tasks;
 
-namespace TokenManagerFunctions.Functions
+namespace TokenManagerFunctions
 {
     public static class TokenDashboardFunction
     {
         [FunctionName("TokenDashboardFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
-            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] DocumentClient client,
+            [CosmosDB(ConnectionStringSetting = "DBConnectionString")] IDocumentClient client,
             ILogger log)
         {
             log.LogInformation("TokenDashboardFunction - Completed");
