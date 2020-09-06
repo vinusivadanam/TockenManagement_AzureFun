@@ -1,0 +1,17 @@
+{
+    "version": "2.0",
+    "logging": {
+      "applicationInsights": {
+        "samplingExcludedTypes": "Request",
+        "samplingSettings": {
+          "isEnabled": true
+        }
+      },
+      "AllowedHosts": "*",
+      "CosmosDB": {
+        "Endpoint": "",
+        "Key": "",
+        "DatabaseName": ""
+      }
+    }
+}
