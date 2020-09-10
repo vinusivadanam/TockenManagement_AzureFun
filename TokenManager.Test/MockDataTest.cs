@@ -40,7 +40,7 @@ namespace TokenManager.Test
             CounterNo = 1,
             TransactionType = TransactionTypeEnume.BankTransaction,
             Status = TokenStatusEnume.InQueue
-            } });
+            }});
 
             var mockDocumentQuery = new Mock<IFakeDocumentQuery<Token>>();
             mockDocumentQuery

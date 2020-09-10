@@ -1,3 +1,4 @@
+using Amazon.Runtime.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
@@ -38,11 +39,16 @@ namespace TokenManagerFunctions
 
             if (queryRes.HasMoreResults)
             {
-                token = (Token)queryRes.ExecuteNextAsync().Result.First();
+                var data = queryRes.ExecuteNextAsync().Result;
+                if(!data.Any())
+                {
+                    return new OkObjectResult("No tokens in queue.");
+                }
+                token = (Token)data.First();
                 token.Status = TokenStatusEnume.InCounter;
                 token.CurrentEstimatedWaitingTime = 0;
                 token.CounterNo = counterNo;
-                await client.CreateDocumentAsync(tokenCollectUri, token);
+                await client.UpsertDocumentAsync(tokenCollectUri, token);
             }
 
             log.LogInformation("ServeTokenFunction - Completed");

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Newtonsoft.Json;
 namespace Models
 {
     public class Token
     {
+        [JsonProperty("id")]
         public string TokenNo { get; set; }
         public TokenStatusEnume Status { get; set; }
         public int InitialEstimatedWaitingTime { get; set; }

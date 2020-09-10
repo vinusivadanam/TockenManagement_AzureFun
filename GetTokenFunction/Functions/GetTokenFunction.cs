@@ -64,8 +64,14 @@ namespace TokenManagerFunctions
 
             if (queryRes.HasMoreResults)
             {
-                var lastToken = (Token)queryRes.ExecuteNextAsync().Result.First();
-                newToken.TokenNo = (int.Parse(lastToken.TokenNo) + 1).ToString();
+                var data = queryRes.ExecuteNextAsync().Result;
+                int lastTokenNo = 0;
+                if (data.Any())
+                {
+                    var lastToken = (Token)data.First();
+                    lastTokenNo = int.Parse(lastToken.TokenNo);
+                }
+                newToken.TokenNo = (lastTokenNo + 1).ToString();
                 await client.CreateDocumentAsync(tokenCollectUri, newToken);
             }
 
